@@ -1,0 +1,8 @@
+    Potl - outliner for Vim
+---------------------------
+
+This plugin was inspired by the excellent TVO. I was interested in doing
+something more lightweight, small and quick and in python. I also wanted to
+avoid using '|' characters for text areas.
+
+Please open doc.potl for the rest of documentation.

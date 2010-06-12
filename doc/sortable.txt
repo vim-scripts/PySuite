@@ -1,0 +1,22 @@
+    Sortable table plugin
+-------------------------
+
+This plugin will let you sort a table by any column. Data type (alphanumeric
+or numeric) is automatically detected. Data fields are separated by two or
+more spaces and must not be empty.  Headers must be single word.
+
+The file with the table should have extension ".ts".
+
+The sorting is done by placing cursor on a header and pressing Enter. Here's
+an example layout, sorted by 2nd column:
+
+h1   h2    h3
+-------------
+c    1     3
+a    2.3   a
+b    3     1
+b    100   .
+
+
+Headers must be one the first line and 2nd line is reserved for the divider
+line, everything after that will be sorted.

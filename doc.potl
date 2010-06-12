@@ -1,0 +1,22 @@
+· Quickstart
+    mapleader '\' is assumed in this document.
+
+    \h will show help listing.
+    \n will add a new heading
+    - and = will close and open one level of items.
+
+    As you can see above, the bullet '·' indicates a header.
+
+· Additional commands
+    \> and \< will promote and demote the current item.
+
+    \z<N> will set foldlevel (where <N> is number from 0 to 9)
+
+    · Second level section
+        This is an example of 2nd level
+
+        · 3rd level section
+            Note that you can omit space after the bullet.
+
+· Settings
+    You can set colors in syntax/potl.vim and shorcuts in plugin/potl.vim

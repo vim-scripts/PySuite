@@ -1,0 +1,20 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3122
+
+You need vim compiled with python to use these! To test if your vim includes python, use this command:  :python print 'hi'. If you get an error, you don't have python. 
+
+Included scripts are:
+
+- vimp3 - music player for vim (scores, random mode taking scores into account, multiple playlists per file, option to pause between tracks; note: other scripts will work in win/linux, this one is only for linux)
+- outliner similar to TVO
+- todo list manager
+- project manager (load/unload by dir/project, make an outline of python files, etc)
+- calendar that supports adding notes to dates
+- plugin to track expenses and balances
+- sortable table with fields separated by 2+ spaces
+- resize - set a list of main vim window sizes and use two shortcuts to resize -/+
+- helpgrep - enter a few words and use :helpgrep cmd to search for them in any order
+- pystripdoc - make a copy of buffer with stripped out python docstrings and comments
+- pyfolddoc - fold python docstrings and comments
+- aligncode - align code by '=' or '#' chars
+
+For a more detailed description, see home page: http://lightbird.net/pysuite/.

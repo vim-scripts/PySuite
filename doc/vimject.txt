@@ -1,0 +1,92 @@
+    Vimject - project plugin for vim
+------------------------------------
+
+Shortcuts are set up at the top of plugin/vimject.vim. You can see a list of
+default by hitting '?'.  In this document, I assume Leader to be '\'.
+
+
+    Quickstart
+--------------
+
+Press '\P'
+Enter project file name. File extension should be '.proj'.
+
+You will see an empty file. Add this line on top:
+
+---MyProj---
+
+You can have multiple projects per file. Each has to be headed by a line in
+this format.
+
+Add current directory and then list files in it: press '\d', then '\L'.
+
+You can delete files you don't need with standard vim commands. You can also
+add them manually if that's easier.
+
+Open one of them by pressing Enter when cursor is on the file. If you position
+cursor on the dirname line, pressing '\l' will load all files in the dir. If
+your cursor is positioned on project name, all files in the project will be
+loaded. You can have multiple directories in each project.
+
+Here's what the listing should look like (with homedir changed to '~'
+manually):
+
+---MyProj---
+
+~/.vim/plugin/
+  vimject.vim
+  wtodolist.vim
+
+# python files
+~/.vim/python/
+  aligncode.py
+  helpgrep.py
+
+
+    Commands
+------------
+Assuming your Leader is set to '\':
+
+    Open project file                                               \ P
+    Add current directory                                           \ d
+    Load file under cursor               Enter
+    Load all files in dir or project                                \ l
+    Add listing of files under dirname                              \ L
+    Grep all files in dir or project                                \ g
+    Unload file or all files in dir or project   U
+
+    Create python outline for all .py files in dir or project:      \ p
+    Create html python outline for all .py files in dir or project: \ y
+    Help                                 ?
+
+
+    Tips
+--------
+
+    - Python outline commands will not work when files have to do some complex
+      imports, e.g.  django project files. Also note that .py files should use
+      'if __name__ == "__main__"' to run code because vimject has to import
+      them.
+
+      See python/proj_genpydoc.py for some options for this command.
+
+    - Directory can also be a relative path to the locaiton of project file,
+      in that case it should end with '/'. Example:
+
+            ~/mydir/
+              file1
+
+            my_relative_dir/
+              file2
+
+    - You can have the same directory appear several times with different sets
+      of files to allow commands on specific sets:
+
+            ~/mydir/
+              file1
+              file2
+
+            ~/mydir/
+              file3
+              file4
+

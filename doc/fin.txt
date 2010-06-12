@@ -1,0 +1,55 @@
+    Fin - expense and balance tracking
+--------------------------------------
+
+First of all, this plugin is very basic and simple! It doesn't do anything
+that a spreadsheet wouldn't do. However, it will be very easy to extend in vim
+or python and may be good enough for your needs as it is.
+
+Shortcuts are set up at the top of plugin/fin.vim. You can see a list of
+default by hitting '\?' in todo list window. In this document I assume your
+mapleader is '\'.
+
+
+    Quickstart
+--------------
+
+:e test.fin
+
+Enter account names and initial balances, fields separated by two or more
+spaces:
+
+sav  check  cc1  cc2    cash
+2500  1000  2000  3000  25
+
+Hit '\i' to initialize:
+
+sav    check    cc1    cc2    cash    date         desc
+------------------------------------------------------------------------------
+2500   1000     2000   3000   25      Thu Jun 10   initial
+
+------------------------------------------------------------------------------
+
+
+Hit Enter to add a new entry and type in the name and then edit the amount
+using 'R' command to keep alignment:
+
+sav    check    cc1    cc2    cash    date         desc
+------------------------------------------------------------------------------
+2500   1000     2000   3000   25      Thu Jun 10   initial
+0      0        0      0      -6      Thu Jun 10   kale and cookies
+
+------------------------------------------------------------------------------
+
+Hit 'U' to update totals:
+
+sav    check    cc1    cc2    cash    date         desc
+------------------------------------------------------------------------------
+2500   1000     2000   3000   25      Thu Jun 10   initial
+0      0        0      0      -6      Thu Jun 10   kale and cookies
+
+------------------------------------------------------------------------------
+2500   1000     2000   3000   19
+
+
+To transfer between accounts, put -amount in one column and +amount in the
+other (on the same line).

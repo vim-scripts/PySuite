@@ -1,0 +1,69 @@
+    WTodo list plugin
+---------------------
+
+Shortcuts are set up at the top of plugin/wtodolist.vim. You can see a list of
+default by hitting '?' in todo list window.
+
+
+    Quickstart
+--------------
+
+:e list.todo
+Press N and enter task name three times.
+
+Here's what you should see:
+
+ Name       Project  Priority  Diff  Done  OnHold  Started
+------------------------------------------------------------
+ Task1               0         0     0     No      Sat Jun 5
+ Task2               0         0     0     No      Sat Jun 5
+ Task3               0         0     0     No      Sat Jun 5
+
+Set priority of two of them to different numbers and press Enter to sort.
+
+If cursor is positioned on any of the headers, sorting will follow that
+category; otherwise sorting defaults to priority.
+
+Let's try marking one task as done and setting another on hold, and then
+sorting again:
+
+Press Space, down, then `H`, then Enter. Here is the end result:
+
+Name    Project  Priority  Diff  Done  OnHold  Started
+---------------------------------------------------------
+ Task2            9         0     0     No      Sat Jun 5
+
+ Task1            2         0     0     Yes     Sat Jun 5
+
+ Task3            0         0     100   No      Sat Jun 5
+
+Tasks are grouped in 3 sections: active, onhold and finished.
+
+
+    Tips
+--------
+
+    - Hit '?' in todo window - there are some commands not covered here.
+
+    - tasks should not have trailing spaces, otherwise putting on hold /
+      marking done will not work right. Sorting will remove trailing spaces.
+      One space is ok, 2+ is a problem.
+
+    - you can add project name to any task. It does not have to be aligned
+      perfectly with the header, it's enough if there are two or more spaces
+      separating columns.
+
+    - You can change text in any cell by editing it directly with vim
+      commands. Use the 'R' or 'r' to keep alignment intact.
+
+    - You can change divider to anything but all tasks should start from 3rd
+      line.
+
+    - 'Diff' header is for 'difficulty'. It will be sorted numerically like
+      priority.
+
+    - OnHold command toggles task on / off hold; done command only sets them
+      to 100 complete.
+
+    - Sorting is also useful to re-align columns and refresh view e.g. if you
+      enter a very long project name.
