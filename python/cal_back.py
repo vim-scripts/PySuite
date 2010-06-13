@@ -30,4 +30,5 @@ def back():
     search("\d")
 
 
-back()
+if __name__ == '__main__':
+    back()

@@ -21,6 +21,8 @@ let b:vimject_loaded = 1
 :au BufNewFile,BufRead,BufEnter *.proj nnoremap <buffer> <Leader>o :call Genpydoc("potl")<CR>
 :au BufNewFile,BufRead,BufEnter *.proj nnoremap <buffer> ? :call ProjHelp()<CR>
 
+:au BufNewFile,BufRead *.proj setlocal nowrap
+
 :au BufNewFile,BufRead *.proj :setlocal ai
 " nnoremap <Leader>P :vsplit .proj<left><left><left><left><left>
 nnoremap <Leader>P :call OpenProj()<CR>
@@ -76,7 +78,7 @@ function! ProjHelp()
     echo " Unload a file or all files in dir or project          U\n"
     echo " Run a .py, .sh or .html file                         ".g:mapleader."x\n\n"
 
-    echo " potl outline for .py files in dir or project         ".g:mapleader."p\n"
+    echo " potl outline for .py files in dir or project         ".g:mapleader."o\n"
     echo "      - same but txt format                           ".g:mapleader."p\n"
     echo "      - same but html format                          ".g:mapleader."y\n\n"
 

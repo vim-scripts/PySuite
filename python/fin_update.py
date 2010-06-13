@@ -59,4 +59,5 @@ def fin_update():
     command("let s:fin_fldtpl='%s'" % fldtpl)
 
 
-fin_update()
+if __name__ == '__main__':
+    fin_update()

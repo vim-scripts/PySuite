@@ -1,5 +1,5 @@
 " This sets up *.potl files to be outlines
-au BufNewFile,BufRead *.potl			setf potl
+au BufNewFile,BufRead *.potl			set ft=potl
 
 " Mappings:
 :au FileType potl nnoremap <buffer> <Leader>n :call NewHeader()<CR>A

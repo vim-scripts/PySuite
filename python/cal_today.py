@@ -43,4 +43,5 @@ def today():
     normal("2li  ")             # cmd: 2l i<space><space>
     normal("hr[%dlr]lxxb" % mv)     # cmd: h r[ 5l r] l xx b
 
-today()
+if __name__ == '__main__':
+    today()

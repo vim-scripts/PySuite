@@ -32,4 +32,5 @@ def finnew():
     lnum -= 1
     b[lnum:lnum] = [fldtpl % tuple(cols)]
 
-finnew()
+if __name__ == '__main__':
+    finnew()

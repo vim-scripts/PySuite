@@ -35,4 +35,5 @@ def fin_init():
     b[0:0] = [fldtpl % tuple(headers), div] + [fldtpl % tuple(initline), '', div]
     command("let s:fin_fldtpl='%s'" % fldtpl)
 
-fin_init()
+if __name__ == '__main__':
+    fin_init()

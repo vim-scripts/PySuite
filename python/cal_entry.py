@@ -71,4 +71,5 @@ def entry():
         command("normal j")
 
 
-entry()
+if __name__ == '__main__':
+    entry()

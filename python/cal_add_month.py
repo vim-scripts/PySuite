@@ -86,5 +86,6 @@ def add_month():
     command("normal %dggzz" % (lnum+1))
 
 
-add_month()
+if __name__ == '__main__':
+    add_month()
 
