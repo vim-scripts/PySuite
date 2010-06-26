@@ -1,0 +1,167 @@
+    Vimp3 - music player for Vim
+================================
+
+Vimp3 is a music player that uses python and mplayer as backend to play mp3s,
+ogg, flac and wma files. Currently it only works on linux and it will probably
+be too much work to get it working on windows. To use Vimp3, you will need to
+run the server program included in this distribution.
+
+Vimp3 is a fairly basic player but it includes a few uncommon features like
+automatic scores, random play based on scores and an option to pause between
+tracks for specified number of seconds.
+
+Vimp3 supports most usual commands like next, previous, pause, random, repeat
+track or playlist, shows current track, elapsed and total time in vim's status
+line, volume control and seeking.
+
+This document assumes your mapping leader to be '\'.
+
+    Quickstart
+==============
+
+You need mplayer installed and, if you want to use volume control commands,
+you need aumix as well.
+
+First thing to do is to start the server:
+
+    ~/.vim/python/vimp3_server.py
+
+Edit plugin/vimp3.vim, change shortcuts to your taste and most importantly,
+change s:root to point to the location of your music.
+
+Create playlist file:
+
+  :e playlist.vimp3
+
+Add a first playlist name, format of this line should be exactly as shown
+(NO leading spaces):
+
+--- Rock
+
+Use Vim :cd command to change directory to one of the subdirectories of
+s:root. For example, if your music is in /home/user/music/, and you have rock
+and pop subdirectories, enter:
+
+    :cd /home/mydir/music/rock/
+
+[WARNING: If you have a lot of files under this directory, the following
+command will make Vim unresponsive until it scans all the directories
+recursively.]
+
+Use the '\d' command to add all music files recursively. You should end up
+with something like this:
+
+--- Rock
+
+Steely Dan - Pretzel Logic [BeLight]/
+  01 Rikki Don't Lose That Number.ogg  [35]
+  02 Night by Night.ogg  [35]
+  03 Any Major Dude Will Tell You.ogg  [35]
+  04 Barrytown.ogg  [35]
+  05 East St. Louis Toodle-Oo.ogg  [35]
+  06 Parker's Band.ogg  [35]
+  07 Through with Buzz.ogg  [35]
+  08 Pretzel Logic.ogg  [35]
+  09 With a Gun.ogg  [35]
+  10 Charlie Freak.ogg  [35]
+  11 Monkey in Your Soul.ogg  [35]
+
+Tom Waits - Closing Time/
+  Tom Waits - Closing Time - 01 - Ol'55.ogg  [35]
+  Tom Waits - Closing Time - 02 - I Hope That I Don't fall I.ogg  [35]
+  Tom Waits - Closing Time - 03 - Virginia Avenue.ogg  [35]
+  Tom Waits - Closing Time - 04 - Old Shoes(& Picture Postca.ogg  [35]
+  Tom Waits - Closing Time - 05 - Midnight Lullaby.ogg  [35]
+  Tom Waits - Closing Time - 06 - Martha.ogg  [35]
+  Tom Waits - Closing Time - 07 - Rosie.ogg  [35]
+  Tom Waits - Closing Time - 08 - Lonely.ogg  [35]
+  Tom Waits - Closing Time - 09 - Ice Cream Man.ogg  [35]
+  Tom Waits - Closing Time - 11 - Grapefruit Moon.ogg  [35]
+  Tom Waits - Closing Time - 12 - Closing Time.ogg  [35]
+  Tom Waits - Closing Time -10 - Little Trip To Heaven.ogg  [35]
+
+Vimp3 will fold all directories initially, you can open and close folds using
+standard Vim zr/zm commands.
+
+Press '\h' to see the list of available commands - some of them are only for
+the playlist buffer, others will work everywhere.
+
+The first thing that must be done after creating or modifying a playlist is to
+load it to server using '\l' command (cursor has to be anywhere inside that
+playlist). If you modify the playlist in any way, in particular, by copying,
+moving tracks or adding / deleting blank lines, you have to reload the
+playlist because the server and Vim communicate based on track's line number.
+If you change the end of playlist you can still play files in the middle or
+beginning, but the end will be out of sync.
+
+To play any file, position cursor on it and hit Enter.
+
+The numbers to the right of each track are scores, they can go from 0 to 100
+and will automatically increase when you finish playing a track and will
+decrease if you skip a track. You can also manually change scores using -/+
+keys ('=' is the same as plus).
+
+When you're playing a track, its name will show up in vim's statusline,
+elapsed and total time will be displayed next to the name.
+
+In the playlist, current track is indicated with a leading "> " and a
+different colour.
+
+
+    Limitations
+===============
+
+As far as I know, Vim can't run a thread or a continuous loop that won't block
+vim itself. Because of that, vimp3 has to update its state on each user
+keypress.  This can lead to a slight slowdown of Vim; to minimize this,
+communication with the server is done about once in 10 seconds. When a new
+track starts playing, it will take 5 seconds on average to update information
+in status bar and current track indicator in playlist.
+
+In addition, statusline display will only update after a user keypress - if
+you're away for a long time, no updates will be shown but after the first
+keypress after you return, display will be updated.
+
+    Notes
+=========
+
+You can have as many playlists per file as you want.
+
+You can edit playlist using usual Vim commands, the only rules of thumb are
+that format of line with playlist title should not be changed, scores must be
+separated from filename by at least 2 spaces, track names should be indented
+by two spaces; and if you add or remove lines, you should reload playlist.
+
+You can move lines around to play tracks in different order within a
+directory, if you want to mix tracks from different directories, you can
+either make a copy of the dir together with file, e.g.:
+
+The Sugarcubes - Life's Too Good - 1988/
+  01 - The Sugarcubes - Traitor.flac  [35]
+Tom Waits Small Change flac/
+  Tom Waits - Small Change - 01 - Tom Traubert's Blues.flac  [35]
+
+This way each track takes 2 lines. You can have track on one line instead,
+together with the directory:
+
+  Tom Waits Small Change flac/Tom Waits - Small Change - 01 - Tom Traubert's Blues.flac  [35]
+  The Sugarcubes - Life's Too Good - 1988/01 - The Sugarcubes - Traitor.flac  [35]
+
+Notice that there has to be two leading spaces now, for the indicator. There
+is a command that will take the track from current line and paste it in the
+next blank line together with the dir it belongs to: '\t'.
+
+When you're in playlist buffer and one track finishes and another starts
+playing, you will jump automatically to the new track, unless you set
+s:follow_current to 0.
+
+Vimp3 server script will sometimes print error messages about mplayer not
+being able to connect to socket, not finding such file or directory, LIRC and
+pulse audio warnings; you can safely ignore these.
+
+    Tips
+========
+
+    - If you have a directory outside of music root, you can make a symbolic
+      link (unix 'ln -s' command) under root, and then use 'add path' - '\D'
+      command to add it to your playlist.

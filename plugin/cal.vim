@@ -1,44 +1,28 @@
 " Cal - a calendar plugin for vim
 "
 
-if exists("b:py_cal_loaded")
+if exists("g:py_cal_loaded")
     finish
 endif
 
-let b:py_cal_loaded = 1
+let g:py_cal_loaded = 1
 
 
-" Maps
+""" Maps
 
-:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <CR> :call CalEntry()<CR>
-:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <Leader>b :call CalBack()<CR>
-:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <Leader>n :call CalAddMonth()<CR>
+:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <CR>      :call PyCal("entry")<CR>
+:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <Leader>b :call PyCal("back")<CR>
+:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <Leader>n :call PyCal("add_month")<CR>
+:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <Leader>t :call PyCal("today")<CR>
 :au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <Leader>h :call CalHelp()<CR>
-:au BufNewFile,BufRead,BufEnter *.cal   nnoremap <buffer> <Leader>t :call CalToday()<CR>
-:au BufRead *.cal :call CalToday()
-" :au FileType cal   :set nolist
+:au BufRead *.cal :call PyCal("today")
 
 let g:py_cal_width = 98
 
-function! CalAddMonth()
-    :pyfile ~/.vim/python/cal_add_month.py
+
+function! PyCal(...)
+    :pyfile ~/.vim/python/cal.py
 endfu
-
-
-function! CalBack()         " Jump back to cal view from entries section
-    :pyfile ~/.vim/python/cal_back.py
-endfu
-
-
-function! CalToday()
-    :pyfile ~/.vim/python/cal_today.py
-endfu
-
-
-function! CalEntry()        " Goto or add new entry
-    :pyfile ~/.vim/python/cal_entry.py
-endfu
-
 
 function! CalHelp()
     echo " Add New Month           ".g:mapleader."n\n"

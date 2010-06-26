@@ -19,6 +19,6 @@ au BufNewFile,BufRead *.potl			set ft=potl
 :au FileType potl nnoremap - zc
 :au FileType potl nnoremap = zo
 
-:au FileType potl setlocal foldmethod=expr foldexpr=PotlFoldLevel(v:lnum) formatoptions=crqno
+:au FileType potl setlocal foldmethod=expr foldexpr=PotlFoldLevel(v:lnum) formatoptions=crqno autoindent
 :au FileType potl setlocal foldtext=PotlFoldText()
 

@@ -49,15 +49,15 @@ Assuming your Leader is set to '\':
 
     Open project file                                               \ P
     Add current directory                                           \ d
-    Load file under cursor               Enter
+    Load file or browse dir under cursor                            Enter
     Load all files in dir or project                                \ l
     Add listing of files under dirname                              \ L
     Grep all files in dir or project                                \ g
-    Unload file or all files in dir or project   U
+    Unload file or all files in dir or project                      U
 
     Create python outline for all .py files in dir or project:      \ p
     Create html python outline for all .py files in dir or project: \ y
-    Help                                 ?
+    Help                                                            ?
 
 
     Tips
@@ -90,3 +90,5 @@ Assuming your Leader is set to '\':
               file3
               file4
 
+    - if you have NERDTree plugin, Enter on a dirname will use it to browse the dir, otherwise
+      :browse e command is used (only in gui!)

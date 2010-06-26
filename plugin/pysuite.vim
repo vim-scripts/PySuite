@@ -1,5 +1,5 @@
 " PySuite - collection of Vim plugins written in Python
-" version: 0.2.6
+" version: 0.3.0
 "
 " functions:
  " DoAlignCode(...) - Align equal signs or comments in code
@@ -12,11 +12,12 @@
  " SearchCode()     - Search in code only, skipping strings and python-style comments
 "
 
-if exists("b:pysuite_loaded")
-    " finish
+if exists("g:pysuite_loaded")
+    finish
 endif
 
-let b:pysuite_loaded = 1
+let g:pysuite_loaded = 1
+let g:pysuite_tabbar = 1    " set when using pysuite with tabbar; used in proj_open.py
 
 
 command! -nargs=? AlignCode call DoAlignCode(<q-args>)
@@ -79,3 +80,14 @@ function! SortableHelp()
     echo " Fields are separated by two or more spaces. Fields can not be empty\n"
     echo " Help: ?\n\n"
 endfu
+
+function! DoSum()
+python <<
+txt = vim.eval('@"')
+try: print "Sum:", sum([float(x.strip(",;")) for x in txt.split()])
+except: print "DoSum: error parsing numbers:", txt
+.
+endfu
+vnoremap <Leader>s y:call DoSum()<CR>
+command! Sum call DoSum()
+
